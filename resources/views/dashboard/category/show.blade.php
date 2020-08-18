@@ -1,4 +1,4 @@
-@extends('dashboard.master')
+@extends('layouts.app')
 @section('content')
     ID: {{ $category->id }} <br>
     Nombre: {{ $category->nombre }} <br>

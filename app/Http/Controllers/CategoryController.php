@@ -16,7 +16,7 @@ class CategoryController extends Controller
     public function index()
     {
         $categories = Category::orderBy('created_at', 'desc')->paginate(2);
-        return view('dashboard/category/index', ['categories'=>$categories]);
+        return view('dashboard.category.index', ['categories'=>$categories]);
     }
 
     /**
@@ -38,7 +38,7 @@ class CategoryController extends Controller
     public function store(StoreCategory $request)
     {
         Category::create($request->validated());
-        return back()->with('');
+        return redirect()->route('category.index');
     }
 
     /**

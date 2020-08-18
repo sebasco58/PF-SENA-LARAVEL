@@ -1,4 +1,4 @@
-@extends('dashboard.master')
+@extends('layouts.app')
 @section('content')
     <h1>Form tool</h1>
     <form action="{{route('tool.store')}}" method="post">

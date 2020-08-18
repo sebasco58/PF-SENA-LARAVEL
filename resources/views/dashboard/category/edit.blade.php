@@ -1,4 +1,4 @@
-@extends('dashboard.master')
+@extends('layouts.app')
 @section('content')
     <h1>Form cate editar</h1>
     <form action="{{ route('category.update',$category->id) }}" method="POST">
