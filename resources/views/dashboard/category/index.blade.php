@@ -21,12 +21,29 @@
             <td>
                 <a class="btn btn-outline-info" href="{{ route('category.show', $category->id) }}">Detalle</a>
                 <a class="btn btn-outline-info" href="{{ route('category.edit', $category->id) }}">Editar</a>
-                <a class="btn btn-outline-danger" href="{{ route('category.destroy', $category->id) }}">Eliminar</a>
+                <button onclick="return ConfirmarEliminar()" type="submit" form="formDelete" class="btn btn-outline-danger">Eliminar</button>
+                <form id="formDelete" method="POST" action="{{ route('category.destroy',$category) }}" data-action="{{ route('category.destroy', $category) }}">
+                    @method('DELETE')
+                    @csrf
+                </form>
             </td>
         </tr>
       @endforeach
     </tbody>
   </table>
   {{ $categories->links() }}
+  <script type="text/javascript">
+    function ConfirmarEliminar()
+    {
+        var respuesta = confirm ("¿Deseas Eliminar esta categoria?");
+  
+        if(respuesta == true){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+  </script>
 
 @endsection
