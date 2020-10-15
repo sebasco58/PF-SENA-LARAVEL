@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\User;
 use Spatie\Permission\Models\Role;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
@@ -28,7 +29,8 @@ class UserController extends Controller
      */
     public function create()
     {
-        //
+        $roles=Role::all();
+        return view('dashboard.user.create',compact('roles'));
     }
 
     /**
@@ -39,7 +41,13 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $user = User::create([
+            'name'=>$request->get('name'),
+            'email'=>$request->get('email'),
+            'password'=>Hash::make($request->get('document'))
+        ]);
+        $user->syncRoles([$request->get('rol')]);
+        return redirect()->route('user.index');
     }
 
     /**
@@ -50,7 +58,9 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        //
+        $user = User::findOrFail($id);
+        return view('dashboard.user.detail',compact('user'));
+
     }
 
     /**
@@ -61,7 +71,9 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        //
+        $user = User::findOrFail($id);
+        $roles = Role::all();
+        return view('dashboard.user.edit',compact('user','roles'));
     }
 
     /**
@@ -73,7 +85,12 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $user = User::findOrFail($id);
+        $user->name = $request->get('name');
+        $user->email = $request->get('email');
+        $user->syncRoles($request->get('rol'));
+        $user->save();
+        return redirect()->route('user.index');
     }
 
     /**
