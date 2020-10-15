@@ -25,7 +25,11 @@
             <td>
                 <a class="btn btn-outline-info" href="{{ route('tool.show', $tool->id) }}">Detalle</a>
                 <a class="btn btn-outline-info" href="{{ route('tool.edit', $tool->id) }}">Editar</a>
-                <a class="btn btn-outline-danger" href="{{ route('tool.destroy', $tool->id) }}">Eliminar</a>
+                <button onclick="return ConfirmarEliminar()" type="submit" form="formDelete" class="btn btn-outline-danger">Eliminar</button>
+                <form id="formDelete" method="POST" action="{{ route('tool.destroy',$tool) }}" data-action="{{ route('tool.destroy', $tool) }}">
+                    @method('DELETE')
+                    @csrf
+                </form>
             </td>
         </tr>
       @endforeach
@@ -33,5 +37,18 @@
   </table>
   {{ $tools->links() }}
 </div>
+<script type="text/javascript">
+  function ConfirmarEliminar()
+  {
+      var respuesta = confirm ("¿Deseas Eliminar este Equipo?");
+
+      if(respuesta == true){
+          return true;
+      }
+      else{
+          return false;
+      }
+  }
+</script>
 
 @endsection

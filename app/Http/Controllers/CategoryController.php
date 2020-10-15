@@ -26,7 +26,7 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        return view('dashboard/category/create', ['category'=>new Category()]);
+        return view('dashboard.category.create', ['category'=>new Category()]);
     }
 
     /**
@@ -73,7 +73,7 @@ class CategoryController extends Controller
     public function update(StoreCategory $request, Category $category)
     {
         $category->update($request->validated());
-        return back()->with('');
+        return redirect()->route("category.index");
     }
 
     /**

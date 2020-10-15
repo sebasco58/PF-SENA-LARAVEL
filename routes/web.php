@@ -23,6 +23,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::group(['middleware'=>['auth']],function(){
     Route::resource('dashboard/tool', 'ToolController');
     Route::resource('dashboard/category', 'CategoryController');
+    Route::resource('dashboard/loan', 'LoanController');
     Route::resource('dashboard/user', 'UserController');
     Route::resource('dashboard/role', 'RoleController');
 });

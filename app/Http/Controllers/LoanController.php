@@ -3,12 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Http\Requests\StoreTool;
-use App\Tool;
-use App\Category;
 
-
-class ToolController extends Controller
+class LoanController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,8 +13,7 @@ class ToolController extends Controller
      */
     public function index()
     {
-        $tools = Tool::orderBy('created_at', 'desc')->paginate(7);
-        return view('dashboard.tool.index', ['tools'=>$tools]);
+        return view('dashboard.loan.index');
     }
 
     /**
@@ -28,8 +23,7 @@ class ToolController extends Controller
      */
     public function create()
     {
-        $categories = Category::pluck('id','nombre');
-        return view("dashboard.tool.create", ['tool'=>new Tool(), 'categories' =>$categories]);
+        return view('dashboard.loan.create');
     }
 
     /**
@@ -38,10 +32,9 @@ class ToolController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreTool $request)
+    public function store(Request $request)
     {
-        Tool::create($request->validated());
-        return redirect()->route('tool.index');
+        //
     }
 
     /**
@@ -50,9 +43,9 @@ class ToolController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Tool $tool)
+    public function show($id)
     {
-        return view('dashboard.tool.show', ["tool" => $tool]);
+        //
     }
 
     /**
@@ -61,10 +54,9 @@ class ToolController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Tool $tool)
+    public function edit($id)
     {
-        $categories = Category::pluck('id','nombre');
-        return view('dashboard.tool.edit', ["tool" => $tool], compact('categories'));
+        //
     }
 
     /**
@@ -74,10 +66,9 @@ class ToolController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(StoreTool $request, Tool $tool)
+    public function update(Request $request, $id)
     {
-        $tool->update($request->validated());
-        return redirect()->route("tool.index");
+        //
     }
 
     /**
@@ -86,9 +77,8 @@ class ToolController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Tool $tool)
+    public function destroy($id)
     {
-        $tool->delete();
-        return redirect()->route("tool.index");
+        //
     }
 }

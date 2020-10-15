@@ -39,6 +39,9 @@
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('tool.index') }}">{{ __('Uso en Campo') }}</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('loan.index') }}">{{ __('Prestamos') }}</a>
+                        </li>
                     </ul>
 
                     <!-- Right Side Of Navbar -->
