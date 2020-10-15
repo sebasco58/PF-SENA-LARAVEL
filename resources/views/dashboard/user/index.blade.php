@@ -6,6 +6,7 @@
             <div class="card">
                 <div class="card-header">
                     Usuarios
+                    <a href="{{route('user.create')}}" class="ml-3">Crear</a>
                 </div>
                 <div class="card-body">
                     <table class="table">
@@ -27,6 +28,7 @@
                                                 @method('DELETE')
                                                 <div class="btn-group" role="group" aria-label="Basic example">
                                                         <a href="{{route('user.edit', $user->id)}}" class="btn btn-sm btn-outline-primary">Editar</a>
+                                                        <a href="{{route('user.show', $user->id)}}" class="btn btn-sm btn-outline-primary">Detalle</a>
                                                         <button class="btn btn-sm btn-outline-danger">Eliminar</button>
                                                 </div>
                                             </form>
@@ -58,14 +60,12 @@
                                     <tr>
                                         <td>{{$role->name}}</td>
                                         <td>
-                                            <form action="{{route('role.destroy', $role->id)}}" method="post">
-                                                @csrf
-                                                @method('DELETE')
-                                                <div class="btn-group" role="group" aria-label="Basic example">
-                                                        <a href="{{route('role.edit', $role->id)}}" class="btn btn-sm btn-outline-primary">Editar</a>
-                                                        <button class="btn btn-sm btn-outline-danger">Eliminar</button>
-                                                </div>
-                                            </form>
+                                            <div class="btn-group" role="group" aria-label="Basic example">
+                                                <a href="{{route('role.show', $role->id)}}" class="btn btn-sm btn-outline-primary">Detalle</a>
+                                            </div>
+                                            <div class="btn-group" role="group" aria-label="Basic example">
+                                                <a href="{{route('role.edit', $role->id)}}" class="btn btn-sm btn-outline-primary">Editar</a>
+                                            </div>
                                         </td>
                                     </tr>
                                 @empty
