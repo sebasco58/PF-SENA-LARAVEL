@@ -1,6 +1,5 @@
 @extends('layouts.app')
 @section('content')
-<div class="container">
     <a class="btn btn-danger mt-3 mb-3" href="{{route('category.create')}}">
         Crear
     </a>
@@ -43,5 +42,5 @@
         </tbody>
     </table>
     {{ $categories->links() }}
-</div>
+
 @endsection
