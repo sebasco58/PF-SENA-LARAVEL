@@ -29,7 +29,14 @@
                                                 <div class="btn-group" role="group" aria-label="Basic example">
                                                         <a href="{{route('user.edit', $user->id)}}" class="btn btn-sm btn-outline-primary">Editar</a>
                                                         <a href="{{route('user.show', $user->id)}}" class="btn btn-sm btn-outline-primary">Detalle</a>
-                                                        <button class="btn btn-sm btn-outline-danger">Eliminar</button>
+                                                        <div class="btn-group" role="group">
+                                                            <button id="btnGroupDrop1" type="button" class="btn btn-outline-danger dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                                Eliminar
+                                                            </button>
+                                                            <div class="dropdown-menu " aria-labelledby="btnGroupDrop1">
+                                                                <button type="submit" class="dropdown-item">Si, eliminar</button>
+                                                            </div>
+                                                          </div>
                                                 </div>
                                             </form>
                                         </td>
