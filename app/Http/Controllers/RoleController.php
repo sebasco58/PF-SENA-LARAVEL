@@ -3,12 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Http\Requests\StoreTool;
-use App\Tool;
-use App\Category;
 
-
-class ToolController extends Controller
+class RoleController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,8 +13,7 @@ class ToolController extends Controller
      */
     public function index()
     {
-        $tools = Tool::orderBy('created_at', 'desc')->paginate(7);
-        return view('dashboard.tool.index', ['tools'=>$tools]);
+        //
     }
 
     /**
@@ -28,8 +23,7 @@ class ToolController extends Controller
      */
     public function create()
     {
-        $categories = Category::pluck('id','nombre');
-        return view("dashboard.tool.create", ['tool'=>new Tool(), 'categories' =>$categories]);
+        //
     }
 
     /**
@@ -38,10 +32,9 @@ class ToolController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreTool $request)
+    public function store(Request $request)
     {
-        Tool::create($request->validated());
-        return redirect()->route('tool.index');
+        //
     }
 
     /**

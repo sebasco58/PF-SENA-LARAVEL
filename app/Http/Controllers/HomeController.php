@@ -23,13 +23,6 @@ class HomeController extends Controller
      */
     public function index(Request $request)
     {
-        
-        $valid=$request->user()->authorizeRoles(['administrador']);
-
-        if($valid){
-            return view('home');
-        }else{
-            return view('instructores');
-        } 
+        return view('home');
     }
 }

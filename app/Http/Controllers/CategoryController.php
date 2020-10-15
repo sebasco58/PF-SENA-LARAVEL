@@ -49,7 +49,7 @@ class CategoryController extends Controller
      */
     public function show(Category $category)
     {
-        return view('dashboard/category/show', ["category" => $category]);
+        return view('dashboard.category.show', ["category" => $category]);
     }
 
     /**
@@ -60,7 +60,7 @@ class CategoryController extends Controller
      */
     public function edit(Category $category)
     {
-        return view('dashboard/category/edit', ["category" => $category]);
+        return view('dashboard.category.edit', ["category" => $category]);
     }
 
     /**
@@ -84,6 +84,7 @@ class CategoryController extends Controller
      */
     public function destroy(Category $category)
     {
-        //
+        $category->delete();
+        return redirect()->route("category.index");
     }
 }
