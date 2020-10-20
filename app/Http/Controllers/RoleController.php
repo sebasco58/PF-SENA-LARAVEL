@@ -57,9 +57,9 @@ class RoleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Role $rol )
     {
-        $rol = Role::findOrFail($id);
+        $this->authorize('update',[Role::class,$rol]);
         $permissions = Permission::all();
         return view('dashboard.role.edit',compact('rol','permissions'));
     }
@@ -71,9 +71,9 @@ class RoleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Role $rol)
     {
-        $rol = Role::findOrFail($id); 
+        $this->authorize('update',[Role::class,$rol]);
         $rol->name = $request->get('name');
         $rol->save();
         $rol->syncPermissions($request->get('permissions'));

@@ -29,6 +29,7 @@ class UserController extends Controller
      */
     public function create()
     {
+        $this->authorize('create',[User::class]);
         $roles=Role::all();
         return view('dashboard.user.create',compact('roles'));
     }
@@ -41,6 +42,7 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
+        $this->authorize('create',[User::class]);
         $user = User::create([
             'name'=>$request->get('name'),
             'email'=>$request->get('email'),
@@ -69,9 +71,9 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(User $user)
     {
-        $user = User::findOrFail($id);
+        $this->authorize('update',[User::class,$user]);
         $roles = Role::all();
         return view('dashboard.user.edit',compact('user','roles'));
     }
@@ -83,9 +85,9 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, User $user)
     {
-        $user = User::findOrFail($id);
+        $this->authorize('update',[User::class,$user]);
         $user->name = $request->get('name');
         $user->email = $request->get('email');
         $user->syncRoles($request->get('rol'));
@@ -99,9 +101,9 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(User $user)
     {
-        $user = User::findOrFail($id);
+        $this->authorize('delete',[User::class,$user]);
         $user->syncRoles();
         $user->delete();
         return redirect()->route('user.index');

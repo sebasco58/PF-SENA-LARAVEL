@@ -37,10 +37,13 @@
                             <a class="nav-link" href="{{ route('category.index') }}">{{ __('Categorias') }}</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('tool.index') }}">{{ __('Uso en Campo') }}</a>
+                            <a class="nav-link" href="{{ route('tool.index') }}">{{ __('Equipos') }}</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('loan.index') }}">{{ __('Prestamos') }}</a>
+                            <a class="nav-link" href="{{ route('loan.index') }}">{{ __('Uso en Campo') }}</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="">{{ __('Mantenimientos') }}</a>
                         </li>
                     </ul>
 

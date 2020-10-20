@@ -6,7 +6,9 @@
             <div class="card">
                 <div class="card-header">
                     Usuarios
-                    <a href="{{route('user.create')}}" class="ml-3">Crear</a>
+                    @can('crear usuario')
+                        <a href="{{route('user.create')}}" class="ml-3">Crear</a>
+                    @endcan
                 </div>
                 <div class="card-body">
                     <table class="table">
@@ -27,8 +29,13 @@
                                                 @csrf
                                                 @method('DELETE')
                                                 <div class="btn-group" role="group" aria-label="Basic example">
-                                                        <a href="{{route('user.edit', $user->id)}}" class="btn btn-sm btn-outline-primary">Editar</a>
+                                                        @can('editar usuario')
+                                                            <a href="{{route('user.edit', $user->id)}}" class="btn btn-sm btn-outline-primary">Editar</a>
+                                                        @endcan
+                                                        @can('ver usuario')
                                                         <a href="{{route('user.show', $user->id)}}" class="btn btn-sm btn-outline-primary">Detalle</a>
+                                                        @endcan
+                                                        @can('eliminar usuario')
                                                         <div class="btn-group" role="group">
                                                             <button id="btnGroupDrop1" type="button" class="btn btn-outline-danger dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                                                 Eliminar
@@ -36,7 +43,8 @@
                                                             <div class="dropdown-menu " aria-labelledby="btnGroupDrop1">
                                                                 <button type="submit" class="dropdown-item">Si, eliminar</button>
                                                             </div>
-                                                          </div>
+                                                        </div>
+                                                        @endcan
                                                 </div>
                                             </form>
                                         </td>
@@ -67,12 +75,16 @@
                                     <tr>
                                         <td>{{$role->name}}</td>
                                         <td>
+                                            @can('ver rol')
                                             <div class="btn-group" role="group" aria-label="Basic example">
                                                 <a href="{{route('role.show', $role->id)}}" class="btn btn-sm btn-outline-primary">Detalle</a>
                                             </div>
+                                            @endcan 
+                                            @can('editar rol')
                                             <div class="btn-group" role="group" aria-label="Basic example">
                                                 <a href="{{route('role.edit', $role->id)}}" class="btn btn-sm btn-outline-primary">Editar</a>
                                             </div>
+                                            @endcan
                                         </td>
                                     </tr>
                                 @empty
